@@ -1,4 +1,4 @@
-{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,5 +8,33 @@
 </head>
 <body>
     <h1>Wish Collector</h1>
+
+    <div>
+        <h3>wish list items</h3>
+        {% if wishes.count %}
+            <table>
+                <thead>
+                    <tr> 
+                        <th>description</th>       
+                        <th>delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for wish in wishes %}
+                    <tr>
+                        <td>{{ wish.description }}</td>
+                        <td><a href="{% url 'wish_delete' wish.id %}">x</a></td>         
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+        <h3>No wishes Exist</h3>
+        <hr>
+        {% endif %}
+        <br><br>
+        <hr>
+        <a href="/add">add a wish</a>
+      </div>
 </body>
 </html>

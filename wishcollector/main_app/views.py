@@ -8,9 +8,17 @@ from .models import Wish
 
 # Define the home view
 def home(request):
-  return render(request, 'home.html')
+  wishes = Wish.objects.all()
+  return render(request, 'home.html', {
+    'wishes': wishes,
+  })
 
 class WishCreate(CreateView):
     model = Wish
     fields = '__all__'
     success_url = '/'
+
+
+class WishDelete(DeleteView):
+    model = Wish
+    success_url = '/'    
